@@ -67,7 +67,7 @@ const Home = ({ userEmail }) => {
 
   return (
     <Container>
-      <Button mt={-70} colorScheme="orange" onClick={() => signOut(auth)}>
+      <Button mt={4} colorScheme="orange" onClick={() => signOut(auth)}>
         Cerrar Sesion
       </Button>
 
