@@ -65,14 +65,8 @@ const Home = ({ userEmail }) => {
     fetchTasks();
   }, []);
 
-  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Container>
-      <VStack>
-        <Button mt={2} alignSelf="flex-end" onClick={toggleColorMode}>
-          Mode
-        </Button>
-      </VStack>
       <Button mt={-70} colorScheme="orange" onClick={() => signOut(auth)}>
         Cerrar Sesion
       </Button>
