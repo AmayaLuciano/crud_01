@@ -89,7 +89,7 @@ const Home = ({ userEmail }) => {
       {tareas.length ? (
         <VStack
           spacing={3}
-          alignItems="flex-end"
+          alignItems="stretch"
           divider={<StackDivider />}
           borderColor="gray.500"
           borderWidth="2px"
@@ -100,7 +100,7 @@ const Home = ({ userEmail }) => {
         >
           {tareas?.map((tarea) => (
             <HStack key={tarea.id}>
-              <Text>{tarea.description}</Text>
+              <Text marginRight="auto">{tarea.description}</Text>
               <IconButton
                 icon={<FaTrash />}
                 onClick={() => deleteTask(tarea.id)}
