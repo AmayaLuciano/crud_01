@@ -4,12 +4,13 @@ import Logueo from './components/Logueo';
 
 import app from './firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { VStack } from '@chakra-ui/react';
+import { VStack, useColorMode, IconButton } from '@chakra-ui/react';
+import { FaTrash, FaEdit, FaSun, FaMoon } from 'react-icons/fa';
 const auth = getAuth(app);
 
 function App() {
   const [usuarioGlobal, setUsuarioGlobal] = useState(null);
-
+  const { colorMode, toggleColorMode } = useColorMode();
   onAuthStateChanged(auth, (usuario) => {
     if (usuario) {
       setUsuarioGlobal(usuario);
@@ -17,16 +18,9 @@ function App() {
       setUsuarioGlobal(null);
     }
   });
+
   return (
-    <>
-      {usuarioGlobal ? (
-        <VStack>
-          <Home userEmail={usuarioGlobal.email} />
-        </VStack>
-      ) : (
-        <Logueo />
-      )}
-    </>
+    <>{usuarioGlobal ? <Home userEmail={usuarioGlobal.email} /> : <Logueo />}</>
   );
 }
 

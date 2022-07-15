@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import {
-  collection,
-  getDocs,
   getDoc,
   setDoc,
   doc,
@@ -16,16 +13,13 @@ import {
   Container,
   HStack,
   IconButton,
-  List,
-  ListItem,
   StackDivider,
   Text,
   VStack,
   Badge,
-  Stack,
-  Box,
+  useColorMode,
 } from '@chakra-ui/react';
-import { FaTrash, FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit, FaSun, FaMoon } from 'react-icons/fa';
 import CreateForm from './CreateForm';
 import EditForm from './EditForm';
 
@@ -71,11 +65,18 @@ const Home = ({ userEmail }) => {
     fetchTasks();
   }, []);
 
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Container>
-      <Button colorScheme="orange" mt={4} onClick={() => signOut(auth)}>
+      <VStack>
+        <Button mt={2} alignSelf="flex-end" onClick={toggleColorMode}>
+          Mode
+        </Button>
+      </VStack>
+      <Button mt={-70} colorScheme="orange" onClick={() => signOut(auth)}>
         Cerrar Sesion
       </Button>
+
       {editing ? (
         <EditForm
           productoEditar={productoEditar}
@@ -94,7 +95,7 @@ const Home = ({ userEmail }) => {
       {tareas.length ? (
         <VStack
           spacing={3}
-          align="flex-end"
+          alignItems="flex-end"
           divider={<StackDivider />}
           borderColor="gray.500"
           borderWidth="2px"
